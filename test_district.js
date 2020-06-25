@@ -33,7 +33,8 @@ map.fitBounds(grp.getBounds());
 function reloadmap(new_dist){
   layer.clearLayers()
   console.log(new_dist, "geojsons/" + new_dist + ".geojson")
-  layer = new L.GeoJSON.AJAX("geojsons/" + new_dist + ".geojson")
+  var s =  new L.GeoJSON.AJAX("geojsons/" + new_dist + ".geojson")
+  layer.addData(s)
   console.log(layer)
   map.fitBounds(grp.getBounds());
 }
