@@ -9,7 +9,7 @@ var maine = {
 }
 
 
-
+console.log(maine)
 
 var map = L.map('district',{
   zoomControl: false
