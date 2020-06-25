@@ -20,3 +20,4 @@ map.doubleClickZoom.disable();
 map.scrollWheelZoom.disable();
 
 geojson = L.geoJson(maine).addTo(map);
+map.fitBounds();
