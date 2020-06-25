@@ -19,22 +19,21 @@ map.touchZoom.disable();
 map.doubleClickZoom.disable();
 map.scrollWheelZoom.disable();
 
-var grp = L.featureGroup();
-grp.addTo(map);
-var layer = L.geoJSON().addTo(grp);
+
+var layer = L.geoJSON().addTo(map);
 layer.addData(maine)
 
 
-map.fitBounds(grp.getBounds());
+map.fitBounds(layer.getBounds());
 
 
 
 
 function reloadmap(new_dist){
-  layer.clearLayers()
+
   console.log(new_dist, "geojsons/" + new_dist + ".geojson")
-  layer = L.GeoJSON(L.GeoJSON.AJAX("geojsons/" + new_dist + ".geojson")).addTo(grp)
+  layer = L.GeoJSON(L.GeoJSON.AJAX("geojsons/" + new_dist + ".geojson")).addTo(map)
 
 
-  map.fitBounds(grp.getBounds());
+  map.fitBounds(layer.getBounds());
 }
