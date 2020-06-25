@@ -19,4 +19,4 @@ map.touchZoom.disable();
 map.doubleClickZoom.disable();
 map.scrollWheelZoom.disable();
 
-geojson = L.geoJson(mozambique).addTo(map);
+geojson = L.geoJson(maine).addTo(map);
