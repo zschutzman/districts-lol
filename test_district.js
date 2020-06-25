@@ -24,6 +24,9 @@ grp.addTo(map);
 var layer = L.geoJSON().addTo(grp);
 layer.addData(maine)
 
+var layer2 = new L.GeoJSON.AJAX("geojsons/" + "G01001" + ".geojson").addTo(grp)
+
+
 
 map.fitBounds(grp.getBounds());
 
