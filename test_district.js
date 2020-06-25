@@ -34,7 +34,7 @@ function reloadmap(new_dist){
   grp.removeLayer(layer)
   console.log(new_dist, "geojsons/" + new_dist + ".geojson")
   var layer =  new L.GeoJSON.AJAX("geojsons/" + new_dist + ".geojson")
-  layer.adTo(grp)
+  layer.addTo(grp)
 
   map.fitBounds(grp.getBounds());
 }
