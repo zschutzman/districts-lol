@@ -19,5 +19,10 @@ map.touchZoom.disable();
 map.doubleClickZoom.disable();
 map.scrollWheelZoom.disable();
 
-geojson = L.geoJson(maine).addTo(map);
+var grp = L.featureGroup();
+grp.addTo(map);
+var layer = L.geoJSON().addTo(grp);
+layer.addData(maine)
+
+
 map.fitBounds();
