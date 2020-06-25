@@ -21,6 +21,8 @@
 	  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
 	    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
 	    crossorigin=""></script>
+			<script src="js/leaflet.ajax.min.js"></script>
+
 
 	<title>Hot or Not</title>
 </head>
@@ -28,6 +30,16 @@
 <body>
 
 <div id="district", style="height:600px"></div>
+
+<label for="districtchooser">Choose a district:</label>
+
+<select onchange="reloadmap(this.value)" name="districtchooser" id="districtchooser">
+  <option value="G01004">1</option>
+  <option value="G21001">2</option>
+  <option value="G48010">3</option>
+  <option value="G56000">4</option>
+</select>
+
 
 <script src="test_district.js"></script>
 
