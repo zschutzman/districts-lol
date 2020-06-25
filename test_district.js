@@ -25,4 +25,4 @@ var layer = L.geoJSON().addTo(grp);
 layer.addData(maine)
 
 
-map.fitBounds();
+map.fitBounds(grp.getBounds());
