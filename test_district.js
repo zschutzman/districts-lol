@@ -1,3 +1,24 @@
+var octo = new Octokat({token:'55c7946315746340b150beb4697eb7327b31086a'})
+var repo = octo.repos('zschutzman', 'zach-database')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 var curfile = "";
 var nbr_lyrs = [];
@@ -285,4 +306,26 @@ function apply_party_colors(){
 
 
   }
+}
+
+function hot(){
+
+hsh = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+var commit_info = {
+  message: "vote " + curfile + " " + hsh,
+  content: btoa(curfile + ", 'hot'\n")
+}
+repo.contents("_data/hot-or-not/raw/dat" + hsh + ".txt").add(commit_info)
+
+}
+
+function not(){
+
+hsh = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+var commit_info = {
+  message: "vote " + curfile + " " + hsh,
+  content: btoa(curfile + ", 'not'\n")
+}
+repo.contents("_data/hot-or-not/raw/dat" + hsh + ".txt").add(commit_info)
+
 }

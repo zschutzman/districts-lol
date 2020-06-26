@@ -23,7 +23,8 @@
 	    crossorigin=""></script>
 <script src="js/leaflet.ajax.min.js"></script>
 <script src="https://d3js.org/d3.v5.min.js"></script>
-<script src="https://raw.githubusercontent.com/philschatz/octokat.js/master/dist/octokat.js"></script>
+<script src="js/octokat.js"></script>
+
 	<title>Hot or Not</title>
 </head>
 
@@ -32,11 +33,18 @@
 <div id="district", style="width:600px; height:600px"></div>
 
 <label for="districtchooser">Choose a district:</label>
-
+<div>
 <button onclick="randomdistrict()">R A N D O M</button>
 <button onclick="toggle_adj()">SEE MY FRIENDS</button>
 <button onclick="toggle_party_colors()">DIGITAL STYLE</button>
+</div>
+<br />
+<div>
+<button onclick="hot()">HOT</button>
+<button onclick="not()">NOT</button>
 
+
+</div>
 
 <script src="filenames.js"></script>
 <script src="adjacencies.js"></script>
