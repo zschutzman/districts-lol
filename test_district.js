@@ -90,6 +90,54 @@ L.tileLayer('https://api.mapbox.com/styles/v1/zschutzman/cjp4fdxmo0uv62spdtehzit
 
 
 function randomdistrict(){
+
+
+  var ind1 = ~~(demo_field_list.length * Math.random())
+  while(ind1 == 0){
+    ind1 = ~~(demo_field_list.length * Math.random())
+  }
+  var ind2 = ~~(demo_field_list.length * Math.random())
+
+  var ind3 = ~~(demo_field_list.length * Math.random())
+
+  while (ind2 == ind1 || ind2 == 0){
+    ind2 = ~~(demo_field_list.length * Math.random())
+
+  }
+
+  while (ind3 == ind2 || ind3 == ind1 || ind3 == 0){
+    ind3 = ~~(demo_field_list.length * Math.random())
+  }
+
+
+
+  var f1 = demographics[curfile][demo_field_list[ind1]]
+  var f2 = demographics[curfile][demo_field_list[ind2]]
+  var f3 = demographics[curfile][demo_field_list[ind3]]
+
+  var d1 = demographics[curfile]["total"]
+
+
+
+  v1 = ~~((100 * parseFloat(f1) / parseFloat(d1)))
+  v2 = ~~((100 * parseFloat(f2) / parseFloat(d1)))
+  v3 = ~~((100 * parseFloat(f3) / parseFloat(d1)))
+
+
+
+   var _s = v1 + " percent of the district " + demo_string_lookup[demo_field_list[ind1]] + ". <br />" +
+   v2 + " percent of the district " + demo_string_lookup[demo_field_list[ind2]] + ". <br />" +
+    v3 + " percent of the district " + demo_string_lookup[demo_field_list[ind3]] + ". <br />"
+
+
+
+
+
+  document.getElementById("bio").innerHTML = _s;
+
+
+
+
   style = 'none'
 
   adj = false
@@ -148,7 +196,7 @@ function check_layers_loaded(){
 
 
 function check_layers_unloaded(){
-  console.log("checking", counter, tot)
+
   if (counter == tot){
     map.fitBounds(group.getBounds())
   }  else{
@@ -161,9 +209,9 @@ function check_layers_unloaded(){
 function show_adj(){
   counter = 0;
   tot = adjacencies[curfile].length
-  console.log(curfile)
+
   for (var i=0;i<tot;i++){
-    console.log(adjacencies[curfile][i])
+
     _l = new L.GeoJSON.AJAX("geojsons/" + adjacencies[curfile][i] + ".geojson")
     nbr_lyrs.push(_l)
     nbr_files.push(adjacencies[curfile][i]);
@@ -217,7 +265,7 @@ function apply_party_colors(){
     maxname = 'none'
     maxprop = 1.0
     for (var key in e){
-      console.log(e[key])
+
       if (e[key]['candidatevotes'] > maxvotes){
         maxparty = e[key]['party']
         maxname = key
@@ -226,7 +274,6 @@ function apply_party_colors(){
       }
     }
 
-    console.log(maxprop)
     if (maxparty == 'democrat'){
       layer.setStyle({
         "color":dem_color(maxprop),
@@ -245,7 +292,7 @@ function apply_party_colors(){
 
 
       e = elections[nbr_files[i]]
-      console.log(e)
+
       if (e != undefined){
 
         maxvotes = 0
@@ -253,7 +300,7 @@ function apply_party_colors(){
         maxname = 'none'
         maxprop = 1.0
         for (var key in e){
-          console.log(e[key])
+
           if (e[key]['candidatevotes'] > maxvotes){
             maxparty = e[key]['party']
             maxname = key
