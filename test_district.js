@@ -9,7 +9,17 @@ var maine = {
 }
 
 
-console.log(maine)
+var tiles
+function addTiles() {
+tiles = L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+    attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+    maxZoom: 18,
+    id: 'mapbox/streets-v11',
+    tileSize: 512,
+    zoomOffset: -1,
+    accessToken: 'pk.eyJ1IjoienNjaHV0em1hbiIsImEiOiJja2J2YXdhOW8wNDhsMndvZmJvdjFjajZrIn0.Y4TGDlQxvLgDBelAK8awtA'
+}).addTo(map);
+}
 
 var map = L.map('district',{
   zoomControl: false
@@ -20,8 +30,16 @@ map.doubleClickZoom.disable();
 map.scrollWheelZoom.disable();
 
 
+
+
+
+
+
 var layer = L.geoJSON().addTo(map);
-layer.addData(maine)
+layer = layer.addData(maine)
+
+var b = 0
+
 
 
 map.fitBounds(layer.getBounds());
@@ -29,10 +47,35 @@ map.fitBounds(layer.getBounds());
 
 
 
-function reloadmap(new_dist){
 
+
+
+
+
+addTiles();
+
+
+function randomdistrict(){
+  map.removeLayer(layer);
+  
+  console.log("geojsons/" + filenames[~~(filenames.length * Math.random())]);
+  layer = new L.GeoJSON.AJAX("geojsons/" +  filenames[~~(filenames.length * Math.random())]);
+  layer = layer.addTo(map);
+  console.log(layer.getBounds())
+  layer.on('data:loaded', function() {
+      map.fitBounds(layer.getBounds())
+  })
+
+  addTiles()
+
+}
+
+
+function reloadmap(new_dist){
+  map.removeLayer(layer)
   console.log(new_dist, "geojsons/" + new_dist + ".geojson")
-  layer = L.GeoJSON(L.GeoJSON.AJAX("geojsons/" + new_dist + ".geojson")).addTo(map)
+layer = new L.GeoJSON.AJAX("geojsons/" + new_dist + ".geojson")
+layer.addTo(map)
 
 
   map.fitBounds(layer.getBounds());
