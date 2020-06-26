@@ -29,9 +29,7 @@ map.scrollWheelZoom.disable();
 
 var group = new L.FeatureGroup()
 
-group.on('layerremove', function() {
-  if (group.getLayers().length > 0 ) {console.log("fitting");map.fitBounds(group.getBounds())}
-})
+  group.on("layerremove", function(){counter++})
 
 group.addTo(map)
 
@@ -98,12 +96,14 @@ function toggle_adj(){
   if (adj == false){
     show_adj();
     adj = true;
-    return
+    check_layers_loaded()
+
   }
-  if (adj == true){
+  else if (adj == true){
     hide_adj()
     adj = false
-    return
+    check_layers_unloaded()
+
   }
 }
 
@@ -126,7 +126,15 @@ function check_layers_loaded(){
 }
 
 
-
+function check_layers_unloaded(){
+  console.log("checking", counter, tot)
+  if (counter == tot){
+    map.fitBounds(group.getBounds())
+  }  else{
+      setTimeout(check_layers_loaded,100)
+    }
+    apply_party_colors()
+}
 
 
 function show_adj(){
@@ -145,16 +153,19 @@ function show_adj(){
     })
 
   }
-  check_layers_loaded()
+
 }
 
 
 function hide_adj(){
 
+  tot = adjacencies[curfile].length
+  counter = 0
   for (var i=0; i< nbr_lyrs.length;i++){
     group.removeLayer(nbr_lyrs[i]);
 
   }
+
   nbr_lyrs = [];
   nbr_files = [];
 
