@@ -12346,9 +12346,9 @@ var demo_string_lookup = {
   "povlthalf" : "live below 50% of the poverty line",
   "povbtnhalfone" : "live below the poverty line, above half the poverty line",
   "povover2" : "live at or above twice the level of the poverty line",
-  "over16" : "are over the age of 16",
-  "inlabforce" : "are in the labor force",
-  "notinlabforce" : "are not in the labor force"
+  "over16" : "is over the age of 16",
+  "inlabforce" : "is in the labor force",
+  "notinlabforce" : "is not in the labor force"
 
 
 
