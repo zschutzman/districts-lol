@@ -72,6 +72,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/zschutzman/cjp4fdxmo0uv62spdtehzit
 
 function randomdistrict(){
   style = 'none'
+  apply_party_colors()
   adj = false
   hide_adj()
 
@@ -156,6 +157,7 @@ function hide_adj(){
   }
   nbr_lyrs = [];
   nbr_files = [];
+
 }
 
 
