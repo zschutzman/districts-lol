@@ -137,26 +137,34 @@ function randomdistrict(){
   var f1 = demographics[curfile][demo_field_list[ind1]]
   var f2 = demographics[curfile][demo_field_list[ind2]]
   var f3 = demographics[curfile][demo_field_list[ind3]]
-  console.log(demo_field_list[ind1],demo_field_list[ind2],demo_field_list[ind3])
   var d1 = demographics[curfile]["total"]
 
-  console.log(f1,f2,f3)
 
-  v1 = ~~((100 * parseFloat(f1) / parseFloat(d1)))
-  v2 = ~~((100 * parseFloat(f2) / parseFloat(d1)))
-  v3 = ~~((100 * parseFloat(f3) / parseFloat(d1)))
+  if ([demo_field_list[ind1]] == "medianinc"){
+    _s1 = "The median income in the district is $" + f1 + ". <br />"
+  }
+  else{
+    _s1 = ~~((100 * parseFloat(f1) / parseFloat(d1))) + " percent of the district " + demo_string_lookup[demo_field_list[ind1]] + ". <br />"
+  }
+
+  if ([demo_field_list[ind2]] == "medianinc"){
+    _s2 = "The median income in the district is $" + f2 + ". <br />"
+  }
+  else{
+    _s2 = ~~((100 * parseFloat(f2) / parseFloat(d1))) + " percent of the district " + demo_string_lookup[demo_field_list[ind2]] + ". <br />"
+  }
+
+  if ([demo_field_list[ind3]] == "medianinc"){
+    _s3 = "The median income in the district is $" + f1 + ". <br />"
+  }
+  else{
+    _s3 = ~~((100 * parseFloat(f3) / parseFloat(d1))) + " percent of the district " + demo_string_lookup[demo_field_list[ind3]] + ". <br />"
+  }
 
 
 
-   var _s = v1 + " percent of the district " + demo_string_lookup[demo_field_list[ind1]] + ". <br />" +
-   v2 + " percent of the district " + demo_string_lookup[demo_field_list[ind2]] + ". <br />" +
-    v3 + " percent of the district " + demo_string_lookup[demo_field_list[ind3]] + ". <br />"
 
-
-
-
-
-  document.getElementById("bio").innerHTML = _s;
+  document.getElementById("bio").innerHTML = _s1 + _s2 + _s3;
 
 
 
