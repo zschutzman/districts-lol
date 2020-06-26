@@ -92,6 +92,29 @@ L.tileLayer('https://api.mapbox.com/styles/v1/zschutzman/cjp4fdxmo0uv62spdtehzit
 function randomdistrict(){
 
 
+
+
+
+
+
+  style = 'none'
+
+  adj = false
+  hide_adj()
+  apply_party_colors()
+  group.removeLayer(layer)
+
+  curfile = filenames[~~(filenames.length * Math.random())];
+  layer = new L.GeoJSON.AJAX("geojsons/" + curfile + ".geojson");
+
+  layer.on('data:loaded', function() {
+    group.addLayer(layer);
+    map.fitBounds(layer.getBounds())
+    layer.setStyle({fill:false, color:"#000000", fillOpacity:.7 })
+  })
+
+
+
   var ind1 = ~~(demo_field_list.length * Math.random())
   while(ind1 == 0){
     ind1 = ~~(demo_field_list.length * Math.random())
@@ -114,10 +137,10 @@ function randomdistrict(){
   var f1 = demographics[curfile][demo_field_list[ind1]]
   var f2 = demographics[curfile][demo_field_list[ind2]]
   var f3 = demographics[curfile][demo_field_list[ind3]]
-
+  console.log(demo_field_list[ind1],demo_field_list[ind2],demo_field_list[ind3])
   var d1 = demographics[curfile]["total"]
 
-
+  console.log(f1,f2,f3)
 
   v1 = ~~((100 * parseFloat(f1) / parseFloat(d1)))
   v2 = ~~((100 * parseFloat(f2) / parseFloat(d1)))
@@ -134,25 +157,6 @@ function randomdistrict(){
 
 
   document.getElementById("bio").innerHTML = _s;
-
-
-
-
-  style = 'none'
-
-  adj = false
-  hide_adj()
-  apply_party_colors()
-  group.removeLayer(layer)
-
-  curfile = filenames[~~(filenames.length * Math.random())];
-  layer = new L.GeoJSON.AJAX("geojsons/" + curfile + ".geojson");
-
-  layer.on('data:loaded', function() {
-    group.addLayer(layer);
-    map.fitBounds(layer.getBounds())
-    layer.setStyle({fill:false, color:"#000000", fillOpacity:.7 })
-  })
 
 
 
