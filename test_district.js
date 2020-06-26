@@ -16,11 +16,6 @@ map.scrollWheelZoom.disable();
 
 
 var group = new L.FeatureGroup()
-group.on('layeradd', function() {
-  console.log("fitting add")
-  console.log(group.getBounds())
-    map.fitBounds(group.getBounds())
-})
 
 group.on('layerremove', function() {
     if (group.getLayers().length > 0 ) {console.log("fitting");map.fitBounds(group.getBounds())}
@@ -41,6 +36,7 @@ layer = new L.GeoJSON.AJAX("geojsons/" + curfile + ".geojson");
 
 layer.on('data:loaded', function() {
     group.addLayer(layer)
+    map.fitBounds(layer.getBounds())
 })
 
 
@@ -73,6 +69,7 @@ function randomdistrict(){
 
   layer.on('data:loaded', function() {
       group.addLayer(layer);
+      map.fitBounds(layer.getBounds())
 
   })
 
@@ -96,19 +93,45 @@ function toggle_adj(){
    }
 }
 
+
+var counter;
+var tot;
+
+
+
+function check_layers_loaded(){
+
+if (counter == tot){
+  nbr_lyrs.forEach(function(l){ group.addLayer(l)})
+  map.fitBounds(group.getBounds())
+}
+else{
+  setTimeout(check_layers_loaded,100)
+}
+
+}
+
+
+
+
+
 function show_adj(){
-
-for (var i=0;i<(adjacencies[curfile].length);i++){
-
+counter = 0;
+tot = adjacencies[curfile].length
+console.log(curfile)
+for (var i=0;i<tot;i++){
+    console.log(adjacencies[curfile][i])
     _l = new L.GeoJSON.AJAX("geojsons/" + adjacencies[curfile][i] + ".geojson")
+    nbr_lyrs.push(_l)
 
     _l.on('data:loaded', function() {
-      console.log(_l.getBounds())
-        group.addLayer(_l)
+      console.log("loaded", _l.getBounds())
+        counter++;
 
     })
-    nbr_lyrs.push(_l)
+
 }
+check_layers_loaded()
 }
 
 
