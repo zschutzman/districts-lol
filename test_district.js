@@ -62,7 +62,7 @@ layer.on('data:loaded', function() {
 L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
   attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
   maxZoom: 18,
-  style: 'mapbox://styles/zschutzman/cjp4fdxmo0uv62spdtehzites',
+  style: 'mapbox://styles/zschutzman/cjp4fdxmo0uv62spdtehzites/draft',
   tileSize: 512,
   zoomOffset: -1,
   accessToken: 'pk.eyJ1IjoienNjaHV0em1hbiIsImEiOiJja2J2YXdhOW8wNDhsMndvZmJvdjFjajZrIn0.Y4TGDlQxvLgDBelAK8awtA'
