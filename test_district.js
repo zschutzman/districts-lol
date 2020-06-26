@@ -72,10 +72,10 @@ L.tileLayer('https://api.mapbox.com/styles/v1/zschutzman/cjp4fdxmo0uv62spdtehzit
 
 function randomdistrict(){
   style = 'none'
-  apply_party_colors()
+
   adj = false
   hide_adj()
-
+  apply_party_colors()
   group.removeLayer(layer)
 
   curfile = filenames[~~(filenames.length * Math.random())];
