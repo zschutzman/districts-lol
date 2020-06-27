@@ -213,7 +213,24 @@ function randomdistrict(){
 
 
 
-  document.getElementById("bio").innerHTML = _s0 + _s1 + _s2 + _s3;
+
+if (vote_data[curfile] == undefined){
+  _s4 = "Nobody has rated this district yet!"
+}
+else{
+  d = vote_data[curfile]
+  _s4 = "So far " + d[0] + " people think this district is HOT and " + d[1] + " think it's NOT! <br/ >"
+
+
+}
+
+console.log(_s4)
+
+
+
+
+
+  document.getElementById("bio").innerHTML = _s0 + _s1 + _s2 + _s3 + _s4;
 
 
 
