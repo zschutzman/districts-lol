@@ -1,3 +1,74 @@
+var fips_to_state = {
+   "01": "Alabama",
+   "02": "Alaska",
+   "04": "Arizona",
+   "05": "Arkansas",
+   "06": "California",
+   "08": "Colorado",
+   "09": "Connecticut",
+   "10": "Delaware",
+   "11": "District of Columbia",
+   "12": "Florida",
+   "13": "Geogia",
+   "15": "Hawaii",
+   "16": "Idaho",
+   "17": "Illinois",
+   "18": "Indiana",
+   "19": "Iowa",
+   "20": "Kansas",
+   "21": "Kentucky",
+   "22": "Louisiana",
+   "23": "Maine",
+   "24": "Maryland",
+   "25": "Massachusetts",
+   "26": "Michigan",
+   "27": "Minnesota",
+   "28": "Mississippi",
+   "29": "Missouri",
+   "30": "Montana",
+   "31": "Nebraska",
+   "32": "Nevada",
+   "33": "New Hampshire",
+   "34": "New Jersey",
+   "35": "New Mexico",
+   "36": "New York",
+   "37": "North Carolina",
+   "38": "North Dakota",
+   "39": "Ohio",
+   "40": "Oklahoma",
+   "41": "Oregon",
+   "42": "Pennsylvania",
+   "44": "Rhode Island",
+   "45": "South Carolina",
+   "46": "South Dakota",
+   "47": "Tennessee",
+   "48": "Texas",
+   "49": "Utah",
+   "50": "Vermont",
+   "51": "Virginia",
+   "53": "Washington",
+   "54": "West Virginia",
+   "55": "Wisconsin",
+   "56": "Wyoming"
+}
+
+
+function ordinal_suffix_of(i) {
+    var j = i % 10,
+        k = i % 100;
+    if (j == 1 && k != 11) {
+        return i + "st";
+    }
+    if (j == 2 && k != 12) {
+        return i + "nd";
+    }
+    if (j == 3 && k != 13) {
+        return i + "rd";
+    }
+    return i + "th";
+}
+
+
 var tk = "NTVjNzk0NjMxNTc0NjM0MGIxNTBiZWI0Njk3ZWI3MzI3YjMxMDg2YQ=="
 
 
@@ -55,7 +126,7 @@ layer.on('data:loaded', function() {
 
 
 L.tileLayer('https://api.mapbox.com/styles/v1/zschutzman/cjp4fdxmo0uv62spdtehzites/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoienNjaHV0em1hbiIsImEiOiJja2J2YXdhOW8wNDhsMndvZmJvdjFjajZrIn0.Y4TGDlQxvLgDBelAK8awtA', {
-  attribution: 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  //attribution: 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
   maxZoom: 18,
   tileSize: 512,
   zoomOffset: -1,
@@ -116,7 +187,12 @@ function randomdistrict(){
     })
   }
 
-  _s0 = "This district is " + curfile + ", represented by " +  maxname +  ", a " + maxparty.charAt(0).toUpperCase() + maxparty.slice(1) + ", <br /> who won in 2018 with approximately " + ~~(100*maxprop) + " percent of the vote. <br />"
+  sn = fips_to_state[curfile.slice(1,3)]
+  dn = parseInt(curfile.slice(4,7))
+
+
+
+  _s0 = "This district is " +   (dn == 0 ? sn + " At-Large" : "the "+ sn + " " + ordinal_suffix_of(dn))      +        ", represented by " +  maxname +  ", a " + maxparty.charAt(0).toUpperCase() + maxparty.slice(1) + ", <br /> who won in 2018 with approximately " + ~~(100*maxprop) + " percent of the vote. <br />"
 
 
 
