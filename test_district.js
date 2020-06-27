@@ -48,7 +48,7 @@ layer = new L.GeoJSON.AJAX("geojsons/" + curfile + ".geojson");
 
 layer.on('data:loaded', function() {
   group.addLayer(layer)
-  map.fitBounds(layer.getBounds(), {padding: [13,13]})
+  map.fitBounds(layer.getBounds().pad(Math.sqrt(2) / 10), {padding: [0,0]})
   layer.setStyle({fill:false, color:"#000000", fillOpacity:0.7 })
 })
 
@@ -77,7 +77,7 @@ function randomdistrict(){
 
   layer.on('data:loaded', function() {
     group.addLayer(layer);
-    map.fitBounds(layer.getBounds(), {padding: [13,13]})
+    map.fitBounds(layer.getBounds().pad(Math.sqrt(2) / 10), {padding: [0,0]})
     layer.setStyle({fill:false, color:"#000000", fillOpacity:.7 })
   })
 
@@ -205,7 +205,7 @@ function check_layers_loaded(){
 
   if (counter == tot){
     nbr_lyrs.forEach(function(l){ group.addLayer(l)})
-    map.fitBounds(group.getBounds(),{padding: [13,13]})
+    map.fitBounds(group.getBounds(),{padding: [0,0]})
   }
   else{
     setTimeout(check_layers_loaded,100)
@@ -217,7 +217,7 @@ function check_layers_loaded(){
 function check_layers_unloaded(){
 
   if (counter == tot){
-    map.fitBounds(group.getBounds(), {padding: [13,13]})
+    map.fitBounds(group.getBounds(), {padding: [0,0]})
   }  else{
     setTimeout(check_layers_loaded,100)
   }
