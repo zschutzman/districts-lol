@@ -79,7 +79,7 @@ var tk = "NTVjNzk0NjMxNTc0NjM0MGIxNTBiZWI0Njk3ZWI3MzI3YjMxMDg2YQ=="
 
 
 var octo = new Octokat({token:atob(tk)})
-var repo = octo.repos('zschutzman', 'zach-database')
+var repo = octo.repos('zschutzman', 'districts-lol-data')
 
 
 
@@ -135,6 +135,8 @@ L.tileLayer('https://api.mapbox.com/styles/v1/zschutzman/ckby1otrt1tnf1io6i7xvk3
 
 
 function randomdistrict(){
+document.getElementById("color_btn").style.background = "#ffffff"
+document.getElementById("nbr_btn").style.background = "#ffffff"
 
   style = 'none'
 
@@ -298,6 +300,7 @@ function randomdistrict(){
 function toggle_adj(){
   if (adj == false){
     show_adj();
+    document.getElementById("nbr_btn").style.background = "#33ffbb"
     adj = true;
     check_layers_loaded()
 
@@ -305,6 +308,7 @@ function toggle_adj(){
   else if (adj == true){
     hide_adj()
     adj = false
+    document.getElementById("nbr_btn").style.background = "#ffffff"
     check_layers_unloaded()
 
   }
@@ -372,8 +376,15 @@ function hide_adj(){
 
 function toggle_party_colors(){
 
-  if (style == 'party'){style='none'}
-  else {style = 'party'}
+  if (style == 'party'){
+    style='none'
+    document.getElementById("color_btn").style.background = "#ffffff"
+    //document.getElementById("color_btn").style.color = "#ffffff !important"
+  }
+  else {
+    style = 'party'
+    document.getElementById("color_btn").style.background = "#9966ff"
+}
   apply_party_colors()
 }
 

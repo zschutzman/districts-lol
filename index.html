@@ -48,21 +48,24 @@
 
 
 <p style="margin:0 auto;margin-bottom:5px; text-align:center">
-<span class="hot_button noselect" onclick="hot()" style="display: inline-block; width:47%" >hot</span>
-<span class="not_button noselect" onclick="not()" style="display:inline-block; width:47%" >not</span>
+<button class="hot_button noselect" onclick="hot()" style="display: inline-block; width:47%" >hot</button>
+<button class="not_button noselect" onclick="not()" style="display:inline-block; width:47%" >not</button>
 </p>
 
 <!-- <button onclick="randomdistrict()">New Random District</button> -->
-<div style="margin:0 auto; text-align:center">
-<div class="nbr_button noselect" onclick="toggle_adj()" style="display: inline-block; width:47%" >toggle nearby districts</div>
-<div class="partisan_button noselect" onclick="toggle_party_colors()" style="display:inline-block; width:47%" >toggle partisan colors</div>
-</div>
+
 
 
 
 
 
 <span class="figure" id="bio" style="margin:0 auto"></span>
+
+<p style="margin:0 auto; text-align:center; ;margin-bottom:5px;">
+<button class="nbr_button noselect" onclick="toggle_adj()" style="display: inline-block; width:47%" id="nbr_btn" >nearby districts</button>
+<button class="partisan_button noselect" onclick="toggle_party_colors()" style="display:inline-block; width:47%" id="color_btn">partisan colors</button>
+</p>
+<br />
 
 <p class="figure" id="pop_text" style="margin:0 auto"></p>
 <br />
