@@ -130,9 +130,7 @@ function randomdistrict(){
   style = 'none'
 
   adj = false
-  console.log(curfile)
   if (curfile != 'none'){
-    console.log(layer,"here")
     hide_adj()
     apply_party_colors()
     group.removeLayer(layer)
