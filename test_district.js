@@ -423,7 +423,7 @@ var commit_info = {
   message: "vote " + curfile + " " + hsh,
   content: btoa(curfile + ", 'hot'\n")
 }
-repo.contents("_data/hot-or-not/raw/dat" + hsh + ".txt").add(commit_info)
+repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info)
 
 }
 
@@ -434,6 +434,6 @@ var commit_info = {
   message: "vote " + curfile + " " + hsh,
   content: btoa(curfile + ", 'not'\n")
 }
-repo.contents("_data/hot-or-not/raw/dat" + hsh + ".txt").add(commit_info)
+repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info)
 
 }
