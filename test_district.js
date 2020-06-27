@@ -6,23 +6,6 @@ var repo = octo.repos('zschutzman', 'zach-database')
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 var curfile = "";
 var nbr_lyrs = [];
 var nbr_files = []
@@ -53,14 +36,9 @@ map.scrollWheelZoom.disable();
 
 var group = new L.FeatureGroup()
 
-  group.on("layerremove", function(){counter++})
+group.on("layerremove", function(){counter++})
 
 group.addTo(map)
-
-
-
-
-
 
 
 
@@ -70,13 +48,9 @@ layer = new L.GeoJSON.AJAX("geojsons/" + curfile + ".geojson");
 
 layer.on('data:loaded', function() {
   group.addLayer(layer)
-  map.fitBounds(layer.getBounds(), {padding: [10,10]})
+  map.fitBounds(layer.getBounds(), {padding: [13,13]})
   layer.setStyle({fill:false, color:"#000000", fillOpacity:0.7 })
 })
-
-
-
-
 
 
 
@@ -89,16 +63,7 @@ L.tileLayer('https://api.mapbox.com/styles/v1/zschutzman/cjp4fdxmo0uv62spdtehzit
 }).addTo(map);
 
 
-
-
-
 function randomdistrict(){
-
-
-
-
-
-
 
   style = 'none'
 
@@ -112,7 +77,7 @@ function randomdistrict(){
 
   layer.on('data:loaded', function() {
     group.addLayer(layer);
-    map.fitBounds(layer.getBounds(), {padding: [10,10]})
+    map.fitBounds(layer.getBounds(), {padding: [13,13]})
     layer.setStyle({fill:false, color:"#000000", fillOpacity:.7 })
   })
 
@@ -151,19 +116,7 @@ function randomdistrict(){
     })
   }
 
- _s0 = "This district is " + curfile + ", represented by " +  maxname +  ", a " + maxparty.charAt(0).toUpperCase() + maxparty.slice(1) + ", <br /> who won in 2018 with approximately " + ~~(100*maxprop) + " percent of the vote. <br />"
-
-
-
-
-
-
-
-
-
-
-
-
+  _s0 = "This district is " + curfile + ", represented by " +  maxname +  ", a " + maxparty.charAt(0).toUpperCase() + maxparty.slice(1) + ", <br /> who won in 2018 with approximately " + ~~(100*maxprop) + " percent of the vote. <br />"
 
 
 
@@ -207,36 +160,26 @@ function randomdistrict(){
   }
 
   if ([demo_field_list[ind3]] == "medianinc"){
-    _s3 = "The median income in the district is $" + f1 + ". <br />"
+    _s3 = "The median income in the district is $" + f3 + ". <br />"
   }
   else{
     _s3 = ~~((100 * parseFloat(f3) / parseFloat(d1))) + " percent of the district " + demo_string_lookup[demo_field_list[ind3]] + ". <br />"
   }
 
 
+  if (vote_data[curfile] == undefined){
+    _s4 = "Nobody has rated this district yet!"
+  }
+  else{
+    d = vote_data[curfile]
+    _s4 = "So far " + d[0] +  (d[0]==1 ? " person thinks" :  " people think")    + " this district is HOT and " + d[1] + (d[1] == 1 ? " thinks": " think")   +  " it's NOT! <br/ >"
 
 
+  }
 
-if (vote_data[curfile] == undefined){
-  _s4 = "Nobody has rated this district yet!"
-}
-else{
-  d = vote_data[curfile]
-  _s4 = "So far " + d[0] +  (d[0]==1 ? " person thinks" :  " people think")    + " this district is HOT and " + d[1] + (d[1] == 1 ? " thinks": " think")   +  " it's NOT! <br/ >"
-
-
-}
-
-
-
-  document.getElementById("bio").innerHTML = _s0 + _s1 + _s2 + _s3 + _s4;
-
-
+  document.getElementById("bio").innerHTML = "<p>" + _s0 + _s1 + _s2 + _s3 + _s4 + "</p>";
 
 }
-
-
-
 
 function toggle_adj(){
   if (adj == false){
@@ -258,12 +201,11 @@ var counter;
 var tot;
 
 
-
 function check_layers_loaded(){
 
   if (counter == tot){
     nbr_lyrs.forEach(function(l){ group.addLayer(l)})
-    map.fitBounds(group.getBounds(),{padding: [10,10]})
+    map.fitBounds(group.getBounds(),{padding: [13,13]})
   }
   else{
     setTimeout(check_layers_loaded,100)
@@ -275,11 +217,11 @@ function check_layers_loaded(){
 function check_layers_unloaded(){
 
   if (counter == tot){
-    map.fitBounds(group.getBounds(), {padding: [10,10]})
+    map.fitBounds(group.getBounds(), {padding: [13,13]})
   }  else{
-      setTimeout(check_layers_loaded,100)
-    }
-    apply_party_colors()
+    setTimeout(check_layers_loaded,100)
+  }
+  apply_party_colors()
 }
 
 
@@ -293,15 +235,10 @@ function show_adj(){
     nbr_lyrs.push(_l)
     nbr_files.push(adjacencies[curfile][i]);
     _l.on('data:loaded', function() {
-
       counter++;
-
     })
-
   }
-
 }
-
 
 function hide_adj(){
 
@@ -324,9 +261,6 @@ function toggle_party_colors(){
   if (style == 'party'){style='none'}
   else {style = 'party'}
   apply_party_colors()
-
-
-
 }
 
 
@@ -335,7 +269,6 @@ function apply_party_colors(){
 
     e = elections[curfile]
     if (e == undefined){return}
-
 
     maxvotes = 0
     maxparty = 'none'
@@ -365,9 +298,6 @@ function apply_party_colors(){
     }
 
     for (var i=0; i<nbr_lyrs.length;i++){
-
-
-
       e = elections[nbr_files[i]]
 
       if (e != undefined){
@@ -400,16 +330,8 @@ function apply_party_colors(){
             fillOpacity:0.2
           })
         }
-
-
       }
-
-
     }
-
-
-
-
   }
   else {
 
@@ -417,40 +339,30 @@ function apply_party_colors(){
 
     for (var i=0; i<nbr_lyrs.length;i++){
 
-
-
       nbr_lyrs[i].setStyle({fill:false, color:"#000000" })
 
-
-
-
-
     }
-
-
-
   }
 }
 
 function hot(){
 
-hsh = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-var commit_info = {
-  message: "vote " + curfile + " " + hsh,
-  content: btoa(curfile + ", 'hot'\n")
-}
-repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then(randomdistrict).catch(hot)
+  hsh = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  var commit_info = {
+    message: "vote " + curfile + " " + hsh,
+    content: btoa(curfile + ", 'hot'\n")
+  }
+  repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then(randomdistrict).catch(hot)
 
 }
 
 function not(){
 
-hsh = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-var commit_info = {
-  message: "vote " + curfile + " " + hsh,
-  content: btoa(curfile + ", 'not'\n")
-}
-repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then(randomdistrict).catch(not)
-
+  hsh = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  var commit_info = {
+    message: "vote " + curfile + " " + hsh,
+    content: btoa(curfile + ", 'not'\n")
+  }
+  repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then(randomdistrict).catch(not)
 
 }
