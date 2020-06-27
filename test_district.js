@@ -154,7 +154,7 @@ function randomdistrict(){
 
   layer.on('data:loaded', function() {
     group.addLayer(layer);
-    map.fitBounds(layer.getBounds().pad(Math.sqrt(2) / 100))
+    map.fitBounds(layer.getBounds().pad(0))
     layer.setStyle({fill:false, color:"#000000", fillOpacity:.7 })
   })
 
@@ -308,7 +308,7 @@ function check_layers_loaded(){
 
   if (counter == tot){
     nbr_lyrs.forEach(function(l){ group.addLayer(l)})
-    map.fitBounds(group.getBounds().pad(Math.sqrt(2) / 100))
+    map.fitBounds(group.getBounds().pad(0))
   }
   else{
     setTimeout(check_layers_loaded,100)
@@ -320,7 +320,7 @@ function check_layers_loaded(){
 function check_layers_unloaded(){
 
   if (counter == tot){
-    map.fitBounds(group.getBounds().pad(Math.sqrt(2) / 100))
+    map.fitBounds(group.getBounds().pad(0))
   }  else{
     setTimeout(check_layers_loaded,100)
   }
