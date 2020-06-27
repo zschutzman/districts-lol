@@ -113,7 +113,7 @@ group.addTo(map)
 
 var layer;
 
-var curfile;
+var curfile = 'none';
 
 
 L.tileLayer('https://api.mapbox.com/styles/v1/zschutzman/cjp4fdxmo0uv62spdtehzites/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoienNjaHV0em1hbiIsImEiOiJja2J2YXdhOW8wNDhsMndvZmJvdjFjajZrIn0.Y4TGDlQxvLgDBelAK8awtA', {
@@ -130,7 +130,9 @@ function randomdistrict(){
   style = 'none'
 
   adj = false
-  if (!layer==undefined){
+  console.log(curfile)
+  if (curfile != 'none'){
+    console.log(layer,"here")
     hide_adj()
     apply_party_colors()
     group.removeLayer(layer)
