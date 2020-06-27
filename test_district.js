@@ -31,12 +31,12 @@ var adj = false;
 var style = 'none';
 
 var rep_color = d3.scaleLinear()
-.domain([0.0, 1])
-.range(["#0000FF", "#FF0000"]);
+.domain([0.0, 0.5, 1])
+.range(["#0000FF", "#999999", "#FF0000"]);
 
 var dem_color = d3.scaleLinear()
-.domain([0.0, 1])
-.range(["#FF0000", "#0000FF"]);
+.domain([0.0, 0.5, 1])
+.range(["#FF0000", "#999999", "#0000FF"]);
 
 
 
