@@ -53,6 +53,10 @@ var fips_to_state = {
 }
 
 
+Array.prototype.diff = function(a) {
+    return this.filter(function(i) {return a.indexOf(i) < 0;});
+};
+
 function ordinal_suffix_of(i) {
     var j = i % 10,
         k = i % 100;
@@ -81,6 +85,8 @@ var curfile = "";
 var nbr_lyrs = [];
 var nbr_files = []
 var adj = false;
+
+var seen = [];
 
 var style = 'none';
 
@@ -136,7 +142,13 @@ function randomdistrict(){
     group.removeLayer(layer)
   }
 
-  curfile = filenames[~~(filenames.length * Math.random())];
+  curfile = filenames[~~(filenames.diff(seen).length * Math.random())];
+
+  while (seen.includes(curfile)){
+    curfile = filenames[~~(filenames.diff(seen).length * Math.random())];
+  }
+  seen.push(curfile);
+
   layer = new L.GeoJSON.AJAX("geojsons/" + curfile + ".geojson");
 
   layer.on('data:loaded', function() {
