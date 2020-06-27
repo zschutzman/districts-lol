@@ -111,18 +111,9 @@ group.on("layerremove", function(){counter++})
 
 group.addTo(map)
 
+var layer;
 
-
-curfile = filenames[~~(filenames.length * Math.random())];
-layer = new L.GeoJSON.AJAX("geojsons/" + curfile + ".geojson");
-
-
-layer.on('data:loaded', function() {
-  group.addLayer(layer)
-  map.fitBounds(layer.getBounds().pad(Math.sqrt(2) / 10), {padding: [0,0]})
-  layer.setStyle({fill:false, color:"#000000", fillOpacity:0.7 })
-})
-
+var curfile;
 
 
 L.tileLayer('https://api.mapbox.com/styles/v1/zschutzman/cjp4fdxmo0uv62spdtehzites/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoienNjaHV0em1hbiIsImEiOiJja2J2YXdhOW8wNDhsMndvZmJvdjFjajZrIn0.Y4TGDlQxvLgDBelAK8awtA', {
@@ -139,9 +130,11 @@ function randomdistrict(){
   style = 'none'
 
   adj = false
-  hide_adj()
-  apply_party_colors()
-  group.removeLayer(layer)
+  if (!layer==undefined){
+    hide_adj()
+    apply_party_colors()
+    group.removeLayer(layer)
+  }
 
   curfile = filenames[~~(filenames.length * Math.random())];
   layer = new L.GeoJSON.AJAX("geojsons/" + curfile + ".geojson");
@@ -151,6 +144,18 @@ function randomdistrict(){
     map.fitBounds(layer.getBounds().pad(Math.sqrt(2) / 10), {padding: [0,0]})
     layer.setStyle({fill:false, color:"#000000", fillOpacity:.7 })
   })
+
+
+  if (curfile == 'G11098'){
+    document.getElementById("bio").innerHTML = "<p>  This is Washington, D.C., which does not have representation in Congress!  </p>";
+    return;
+  }
+
+  if (curfile == 'G72098'){
+    document.getElementById("bio").innerHTML = "<p>  This is Puerto Rico, which does not have representation in Congress!  </p>";
+    return;
+  }
+
 
 
 
@@ -187,12 +192,17 @@ function randomdistrict(){
     })
   }
 
+
+
+
+
   sn = fips_to_state[curfile.slice(1,3)]
   dn = parseInt(curfile.slice(4,7))
+  vstr = (maxprop == 1 ? " who ran unopposed in 2018." :" who won in 2018 with approximately " + ~~(100*maxprop) + " percent of the vote.")
 
 
 
-  _s0 = "This district is " +   (dn == 0 ? sn + " At-Large" : "the "+ sn + " " + ordinal_suffix_of(dn))      +        ", represented by " +  maxname +  ", a " + maxparty.charAt(0).toUpperCase() + maxparty.slice(1) + ", <br /> who won in 2018 with approximately " + ~~(100*maxprop) + " percent of the vote. <br />"
+  _s0 = "This district is " +   (dn == 0 ? sn + " At-Large" : "the "+ sn + " " + ordinal_suffix_of(dn))      +        ", represented by " +  maxname +  ", a " + maxparty.charAt(0).toUpperCase() + maxparty.slice(1) + ", <br />" + vstr +  "<br />"
 
 
 
@@ -281,7 +291,7 @@ function check_layers_loaded(){
 
   if (counter == tot){
     nbr_lyrs.forEach(function(l){ group.addLayer(l)})
-    map.fitBounds(group.getBounds(),{padding: [0,0]})
+    map.fitBounds(group.getBounds().pad(Math.sqrt(2) / 10),{padding: [0,0]})
   }
   else{
     setTimeout(check_layers_loaded,100)
@@ -293,7 +303,7 @@ function check_layers_loaded(){
 function check_layers_unloaded(){
 
   if (counter == tot){
-    map.fitBounds(group.getBounds(), {padding: [0,0]})
+    map.fitBounds(group.getBounds().pad(Math.sqrt(2) / 10), {padding: [0,0]})
   }  else{
     setTimeout(check_layers_loaded,100)
   }
@@ -360,7 +370,7 @@ function apply_party_colors(){
       }
     }
 
-    if (maxparty == 'democrat'){
+    if (maxparty == 'democrat' || maxparty == 'Democratic-Farmer-Labor'){
       layer.setStyle({
         "color":dem_color(maxprop),
         fill:true
@@ -392,7 +402,7 @@ function apply_party_colors(){
           }
         }
 
-        if (maxparty == 'democrat'){
+        if (maxparty == 'democrat' || maxparty == 'Democratic-Farmer-Labor'){
           nbr_lyrs[i].setStyle({
             "color":dem_color(maxprop),
             fill:true,
