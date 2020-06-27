@@ -270,17 +270,26 @@ function randomdistrict(){
 
   if (vote_data[curfile] == undefined){
     _s4 = "Nobody has rated this district yet!"
+    document.getElementById("hotnot_bar").setAttribute("opacity","0%")
+    // document.getElementById("hot_meter").setAttribute("width","0px")
+    // document.getElementById("not_meter").setAttribute("width","0px")
   }
   else{
     d = vote_data[curfile]
     _s4 = "So far " + d[0] +  (d[0]==1 ? " person thinks" :  " people think")    + " this district is HOT and " + d[1] + (d[1] == 1 ? " thinks": " think")   +  " it's NOT!"
 
+    pct = ~~(100*d[0]/(d[0]+d[1]))
+    document.getElementById("hotnot_bar").setAttribute("opacity","75%")
+    document.getElementById("hot_bar").setAttribute("offset",pct+"%")
+    document.getElementById("not_bar").setAttribute("offset",pct+"%")
 
   }
 
   document.getElementById("district_name").innerHTML =  _s0;
 
-  document.getElementById("bio").innerHTML = "<ul style='padding-left:10px'>"  + "<li>" + _s1 + "</li>" + "<li>" +_s2 + "</li>" + "<li>" +_s3 + "</li>" + "<li>" +_s4 + "</li>" + "</ul>";
+  document.getElementById("bio").innerHTML = "<ul style='padding-left:10px'>"  + "<li>" + _s1 + "</li>" + "<li>" +_s2 + "</li>" + "<li>" +_s3 + "</li>"  + "</ul>";
+
+  document.getElementById("pop_text").innerHTML = _s4
 
 }
 
