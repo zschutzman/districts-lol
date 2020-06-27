@@ -219,7 +219,7 @@ if (vote_data[curfile] == undefined){
 }
 else{
   d = vote_data[curfile]
-  _s4 = "So far " + d[0] +  (d[0]==1 ? " person thinks" :  " people think")    + " this district is HOT and " + d[1] + (d[1] == 1 ? " thinks": " think")    " it's NOT! <br/ >"
+  _s4 = "So far " + d[0] +  (d[0]==1 ? " person thinks" :  " people think")    + " this district is HOT and " + d[1] + (d[1] == 1 ? " thinks": " think")   +  " it's NOT! <br/ >"
 
 
 }
@@ -436,7 +436,7 @@ var commit_info = {
   message: "vote " + curfile + " " + hsh,
   content: btoa(curfile + ", 'hot'\n")
 }
-repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info)
+repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then(randomdistrict).catch(hot)
 
 }
 
@@ -447,6 +447,7 @@ var commit_info = {
   message: "vote " + curfile + " " + hsh,
   content: btoa(curfile + ", 'not'\n")
 }
-repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info)
+repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then(randomdistrict).catch(not)
+
 
 }
