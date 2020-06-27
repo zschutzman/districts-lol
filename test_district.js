@@ -115,6 +115,55 @@ function randomdistrict(){
 
 
 
+  e = elections[curfile]
+  if (e == undefined){return}
+
+
+  maxvotes = 0
+  maxparty = 'none'
+  maxname = 'none'
+  maxprop = 1.0
+  for (var key in e){
+
+    if (e[key]['candidatevotes'] > maxvotes){
+      maxparty = e[key]['party']
+      maxname = key
+      maxvotes = e[key]['candidatevotes']
+      maxprop = parseFloat( e[key]['candidatevotes'])/ parseFloat( e[key]['totalvotes'])
+    }
+  }
+
+  if (maxparty == 'democrat'){
+
+    layer.setStyle({
+      "color":dem_color(maxprop),
+      fill:true
+    })
+  }
+  if (maxparty == 'republican'){
+
+    layer.setStyle({
+      "color":rep_color(maxprop),
+      fill:true
+    })
+  }
+
+ _s0 = "This district is represented by " +  maxname +  ", a " + maxparty.charAt(0).toUpperCase() + maxparty.slice(1) + ", who won in 2018, with approximately " + ~~(100*maxprop) + " percent of the vote. <br />"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   var ind1 = ~~(demo_field_list.length * Math.random())
   while(ind1 == 0){
     ind1 = ~~(demo_field_list.length * Math.random())
@@ -164,7 +213,7 @@ function randomdistrict(){
 
 
 
-  document.getElementById("bio").innerHTML = _s1 + _s2 + _s3;
+  document.getElementById("bio").innerHTML = _s0 + _s1 + _s2 + _s3;
 
 
 
