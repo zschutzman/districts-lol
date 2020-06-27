@@ -148,7 +148,7 @@ function randomdistrict(){
     })
   }
 
- _s0 = "This district is represented by " +  maxname +  ", a " + maxparty.charAt(0).toUpperCase() + maxparty.slice(1) + ", <br /> who won in 2018, with approximately " + ~~(100*maxprop) + " percent of the vote. <br />"
+ _s0 = "This district is represented by " +  maxname +  ", a " + maxparty.charAt(0).toUpperCase() + maxparty.slice(1) + ", <br /> who won in 2018 with approximately " + ~~(100*maxprop) + " percent of the vote. <br />"
 
 
 
