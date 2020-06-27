@@ -160,12 +160,14 @@ function randomdistrict(){
 
 
   if (curfile == 'G11098'){
-    document.getElementById("bio").innerHTML = "<p>  This is Washington, D.C., which does not have representation in Congress!  </p>";
+    document.getElementById("district_name").innerHTML = "<p>  This is Washington, D.C., which does not have representation in Congress!  </p>";
+    document.getElementById("bio").innerHTML = ""
     return;
   }
 
   if (curfile == 'G72098'){
-    document.getElementById("bio").innerHTML = "<p>  This is Puerto Rico, which does not have representation in Congress!  </p>";
+    document.getElementById("district_name").innerHTML = "This is Puerto Rico, which does not have representation in Congress!";
+    document.getElementById("bio").innerHTML = ""
     return;
   }
 
@@ -215,7 +217,7 @@ function randomdistrict(){
 
 
 
-  _s0 = "This district is " +   (dn == 0 ? sn + " At-Large" : "the "+ sn + " " + ordinal_suffix_of(dn))      +        ", represented by " +  maxname +  ", a " + maxparty.charAt(0).toUpperCase() + maxparty.slice(1) + ", <br />" + vstr +  "<br />"
+  _s0 = "This district is " +   (dn == 0 ? sn + " At-Large" : "the "+ sn + " " + ordinal_suffix_of(dn))      +        ", represented by " +  maxname +  ", a " + maxparty.charAt(0).toUpperCase() + maxparty.slice(1) + "," + vstr
 
 
 
@@ -245,24 +247,24 @@ function randomdistrict(){
 
 
   if ([demo_field_list[ind1]] == "medianinc"){
-    _s1 = "The median income in the district is $" + f1 + ". <br />"
+    _s1 = "The median income in the district is $" + f1 + "."
   }
   else{
-    _s1 = ~~((100 * parseFloat(f1) / parseFloat(d1))) + " percent of the district " + demo_string_lookup[demo_field_list[ind1]] + ". <br />"
+    _s1 = ~~((100 * parseFloat(f1) / parseFloat(d1))) + " percent of the district " + demo_string_lookup[demo_field_list[ind1]] + "."
   }
 
   if ([demo_field_list[ind2]] == "medianinc"){
-    _s2 = "The median income in the district is $" + f2 + ". <br />"
+    _s2 = "The median income in the district is $" + f2 + "."
   }
   else{
-    _s2 = ~~((100 * parseFloat(f2) / parseFloat(d1))) + " percent of the district " + demo_string_lookup[demo_field_list[ind2]] + ". <br />"
+    _s2 = ~~((100 * parseFloat(f2) / parseFloat(d1))) + " percent of the district " + demo_string_lookup[demo_field_list[ind2]] + "."
   }
 
   if ([demo_field_list[ind3]] == "medianinc"){
-    _s3 = "The median income in the district is $" + f3 + ". <br />"
+    _s3 = "The median income in the district is $" + f3 + "."
   }
   else{
-    _s3 = ~~((100 * parseFloat(f3) / parseFloat(d1))) + " percent of the district " + demo_string_lookup[demo_field_list[ind3]] + ". <br />"
+    _s3 = ~~((100 * parseFloat(f3) / parseFloat(d1))) + " percent of the district " + demo_string_lookup[demo_field_list[ind3]] + "."
   }
 
 
@@ -271,12 +273,14 @@ function randomdistrict(){
   }
   else{
     d = vote_data[curfile]
-    _s4 = "So far " + d[0] +  (d[0]==1 ? " person thinks" :  " people think")    + " this district is HOT and " + d[1] + (d[1] == 1 ? " thinks": " think")   +  " it's NOT! <br/ >"
+    _s4 = "So far " + d[0] +  (d[0]==1 ? " person thinks" :  " people think")    + " this district is HOT and " + d[1] + (d[1] == 1 ? " thinks": " think")   +  " it's NOT!"
 
 
   }
 
-  document.getElementById("bio").innerHTML = "<p>" + _s0 + _s1 + _s2 + _s3 + _s4 + "</p>";
+  document.getElementById("district_name").innerHTML =  _s0;
+
+  document.getElementById("bio").innerHTML = "<ul>"  + "<li>" + _s1 + "</li>" + "<li>" +_s2 + "</li>" + "<li>" +_s3 + "</li>" + "<li>" +_s4 + "</li>" + "</ul>";
 
 }
 

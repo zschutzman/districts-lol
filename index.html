@@ -32,15 +32,24 @@
 </head>
 
 <body>
+
+
 <main>
+<h2 style="text-align:center; ">Is this district HOT or NOT?</h2>
+
+
 	<div style="width:100vw;max-width:400px;">
 <div id="district" class="figure", style="width:100%;padding-top:100%; border-radius:25%; margin:0 auto"></div>
 
 <br />
 
+<span id="district_name"></span>
+<br />
+
+
 <div style="margin:0 auto; text-align:center">
-<span class="hot_button noselect" onclick="hot()" style="display: inline-block; width:40%" >hot</span>
-<span class="not_button noselect" onclick="not()" style="display:inline-block; width:40%" >not</span>
+<span class="hot_button noselect" onclick="hot()" style="display: inline-block; width:45%" >hot</span>
+<span class="not_button noselect" onclick="not()" style="display:inline-block; width:45%" >not</span>
 </div>
 
 <br />
@@ -48,15 +57,13 @@
 
 <!-- <button onclick="randomdistrict()">New Random District</button> -->
 <div style="margin:0 auto; text-align:center">
-<span class="nbr_button noselect" onclick="toggle_adj()" style="display: inline-block; width:40%" >toggle nearby districts</span>
-<span class="partisan_button noselect" onclick="toggle_party_colors()" style="display:inline-block; width:40%" >toggle partisan colors</span>
+<span class="nbr_button noselect" onclick="toggle_adj()" style="display: inline-block; width:45%" >toggle nearby districts</span>
+<span class="partisan_button noselect" onclick="toggle_party_colors()" style="display:inline-block; width:45%" >toggle partisan colors</span>
 </div>
 
-<br />
 
-<div class="figure" id="bio" style="margin:0 auto">
 
-</div>
+<span class="figure" id="bio" style="margin:0 auto"></span>
 
 
 
