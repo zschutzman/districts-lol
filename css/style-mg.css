@@ -83,7 +83,7 @@ strong {
 
 /* Dark blue theme:
 text {
-  fill: white;
+fill: white;
 }
 */
 
@@ -176,10 +176,10 @@ svg {
 /* Dark blue:
 
 .chart {
-  border-top: 1px solid #111;
-  background: #012;
-  border-bottom: 1px solid #111;
-  color: white;
+border-top: 1px solid #111;
+background: #012;
+border-bottom: 1px solid #111;
+color: white;
 }
 */
 
@@ -257,7 +257,7 @@ svg {
   text-align: center;
   border-radius: 4px;
   box-shadow: 0 -0.5px 0 #e0e0e0, 0 0 1px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24);
+  0 1px 2px rgba(0, 0, 0, 0.24);
   margin: 1rem 0;
 }
 
@@ -275,7 +275,7 @@ svg {
   text-align: center;
   border-radius: 4px;
   box-shadow: 0 -0.5px 0 #e0e0e0, 0 0 1px rgba(0, 0, 0, 0.12),
-    0 1px 2px rgba(0, 0, 0, 0.24);
+  0 1px 2px rgba(0, 0, 0, 0.24);
   margin: 10px 5px;
 }
 
@@ -380,11 +380,11 @@ footer {
 }
 
 /* footer a {
-  color: white;
+color: white;
 }
 
 footer a:visited {
-  color: #eeeeff;
+color: #eeeeff;
 } */
 
 footer a {
@@ -454,4 +454,97 @@ nav {
   /* justify-self: flex-start; */
   align-items: flex-start;
   grid-column: 1 / 2;
+}
+
+
+
+
+
+.hot_button {
+  color: #494949 !important;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 20px;
+  border: 4px solid #494949 !important;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+}
+
+.hot_button:hover {
+  color: #ffffff !important;
+  background: #cc00cc;
+  border-color: #f6b93b !important;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+}
+
+.not_button {
+  color: #494949 !important;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 20px;
+  border: 4px solid #494949 !important;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+}
+
+.not_button:hover {
+  color: #ffffff !important;
+  background: #f6b93b;
+  border-color: #cc00cc !important;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+}
+
+.nbr_button {
+  color: #494949 !important;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 20px;
+  border: 4px solid #494949 !important;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+}
+
+.nbr_button:hover {
+  color: #ffffff !important;
+  background: #33ffbb;
+  border-color: #33ffbb !important;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+}
+
+
+.partisan_button {
+  color: #494949 !important;
+  font-family: sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  background: #ffffff;
+  padding: 20px;
+  border: 4px solid #494949 !important;
+  display: inline-block;
+  transition: all 0.4s ease 0s;
+}
+
+.partisan_button:hover {
+  color: #ffffff !important;
+  background: #9966ff;
+  border-color: #9966ff !important;
+  transition: all 0.4s ease 0s;
+  cursor: pointer;
+}
+
+
+.noselect {
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
