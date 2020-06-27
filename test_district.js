@@ -219,14 +219,10 @@ if (vote_data[curfile] == undefined){
 }
 else{
   d = vote_data[curfile]
-  _s4 = "So far " + d[0] + " people think this district is HOT and " + d[1] + " think it's NOT! <br/ >"
+  _s4 = "So far " + d[0] +  (d[0]==1 ? " person thinks" :  " people think")    + " this district is HOT and " + d[1] + (d[1] == 1 ? " thinks": " think")    " it's NOT! <br/ >"
 
 
 }
-
-console.log(_s4)
-
-
 
 
 
