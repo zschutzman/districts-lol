@@ -1,4 +1,7 @@
-var octo = new Octokat({token:'55c7946315746340b150beb4697eb7327b31086a'})
+var tk = "NTVjNzk0NjMxNTc0NjM0MGIxNTBiZWI0Njk3ZWI3MzI3YjMxMDg2YQ=="
+
+
+var octo = new Octokat({token:atob(tk)})
 var repo = octo.repos('zschutzman', 'zach-database')
 
 
@@ -67,7 +70,7 @@ layer = new L.GeoJSON.AJAX("geojsons/" + curfile + ".geojson");
 
 layer.on('data:loaded', function() {
   group.addLayer(layer)
-  map.fitBounds(layer.getBounds())
+  map.fitBounds(layer.getBounds(), {padding: [15,15]})
   layer.setStyle({fill:false, color:"#000000", fillOpacity:0.7 })
 })
 
@@ -78,7 +81,7 @@ layer.on('data:loaded', function() {
 
 
 L.tileLayer('https://api.mapbox.com/styles/v1/zschutzman/cjp4fdxmo0uv62spdtehzites/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoienNjaHV0em1hbiIsImEiOiJja2J2YXdhOW8wNDhsMndvZmJvdjFjajZrIn0.Y4TGDlQxvLgDBelAK8awtA', {
-  attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+  attribution: 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
   maxZoom: 18,
   tileSize: 512,
   zoomOffset: -1,
@@ -109,7 +112,7 @@ function randomdistrict(){
 
   layer.on('data:loaded', function() {
     group.addLayer(layer);
-    map.fitBounds(layer.getBounds())
+    map.fitBounds(layer.getBounds(), {padding: [15,15]})
     layer.setStyle({fill:false, color:"#000000", fillOpacity:.7 })
   })
 
@@ -260,7 +263,7 @@ function check_layers_loaded(){
 
   if (counter == tot){
     nbr_lyrs.forEach(function(l){ group.addLayer(l)})
-    map.fitBounds(group.getBounds())
+    map.fitBounds(group.getBounds(),{padding: [15,15]})
   }
   else{
     setTimeout(check_layers_loaded,100)
@@ -272,7 +275,7 @@ function check_layers_loaded(){
 function check_layers_unloaded(){
 
   if (counter == tot){
-    map.fitBounds(group.getBounds())
+    map.fitBounds(group.getBounds(), {padding: [15,15]})
   }  else{
       setTimeout(check_layers_loaded,100)
     }
