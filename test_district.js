@@ -52,6 +52,8 @@ var fips_to_state = {
    "56": "Wyoming"
 }
 
+var commit_queue = [];
+
 
 Array.prototype.diff = function(a) {
     return this.filter(function(i) {return a.indexOf(i) < 0;});
@@ -459,22 +461,34 @@ function apply_party_colors(){
 
 function hot(){
 
-  hsh = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-  var commit_info = {
-    message: "vote " + curfile + " " + hsh,
-    content: btoa(curfile + ", 'hot'\n")
-  }
-  repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then(randomdistrict).catch(hot)
+  commit_queue.push(btoa(curfile + ", 'not'\n"))
+  randomdistrict()
 
 }
 
 function not(){
-
-  hsh = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-  var commit_info = {
-    message: "vote " + curfile + " " + hsh,
-    content: btoa(curfile + ", 'not'\n")
-  }
-  repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then(randomdistrict).catch(not)
-
+  commit_queue.push(btoa(curfile + ", 'not'\n"))
+  randomdistrict()
 }
+
+
+
+
+function ()
+    {
+        if (commit_queue.length > 0)
+        {
+            //get the next message on the queue
+            var msg = commit_queue.shift();
+
+            hsh = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            var commit_info = {
+              message: "vote " + curfile + " " + hsh,
+              content: msg
+            }
+            repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then().catch(function(e) {  commit_queue.push(msg)    })
+        }
+       setTimeout(make_commits);
+
+    }
+make_commits()
