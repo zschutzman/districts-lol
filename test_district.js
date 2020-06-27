@@ -474,7 +474,7 @@ function not(){
 
 
 
-function ()
+function make_commits()
     {
         if (commit_queue.length > 0)
         {
