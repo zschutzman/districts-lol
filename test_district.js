@@ -275,6 +275,7 @@ document.getElementById("nbr_btn").style.background = "#ffffff"
   if (vote_data[curfile] == undefined){
     _s4 = "Nobody has rated this district yet!"
     document.getElementById("hotnot_bar").setAttribute("opacity","0%")
+    document.getElementById("popularity_bar").setAttribute("height","0")
     // document.getElementById("hot_meter").setAttribute("width","0px")
     // document.getElementById("not_meter").setAttribute("width","0px")
   }
@@ -284,6 +285,7 @@ document.getElementById("nbr_btn").style.background = "#ffffff"
 
     pct = ~~(100*d[0]/(d[0]+d[1]))
     document.getElementById("hotnot_bar").setAttribute("opacity","75%")
+    document.getElementById("popularity_bar").setAttribute("height","75px")
     document.getElementById("hot_bar").setAttribute("offset",pct+"%")
     document.getElementById("not_bar").setAttribute("offset",pct+"%")
 
