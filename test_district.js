@@ -123,7 +123,7 @@ var layer;
 var curfile = 'none';
 
 
-L.tileLayer('https://api.mapbox.com/styles/v1/zschutzman/cjp4fdxmo0uv62spdtehzites/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoienNjaHV0em1hbiIsImEiOiJja2J2YXdhOW8wNDhsMndvZmJvdjFjajZrIn0.Y4TGDlQxvLgDBelAK8awtA', {
+L.tileLayer('https://api.mapbox.com/styles/v1/zschutzman/ckby1otrt1tnf1io6i7xvk3he/tiles/256/{z}/{x}/{y}@2x?access_token=pk.eyJ1IjoienNjaHV0em1hbiIsImEiOiJja2J2YXdhOW8wNDhsMndvZmJvdjFjajZrIn0.Y4TGDlQxvLgDBelAK8awtA', {
   //attribution: 'Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
   maxZoom: 18,
   tileSize: 512,
@@ -154,7 +154,7 @@ function randomdistrict(){
 
   layer.on('data:loaded', function() {
     group.addLayer(layer);
-    map.fitBounds(layer.getBounds().pad(0))
+    map.fitBounds(layer.getBounds())
     layer.setStyle({fill:false, color:"#000000", fillOpacity:.7 })
   })
 
@@ -280,7 +280,7 @@ function randomdistrict(){
 
   document.getElementById("district_name").innerHTML =  _s0;
 
-  document.getElementById("bio").innerHTML = "<ul>"  + "<li>" + _s1 + "</li>" + "<li>" +_s2 + "</li>" + "<li>" +_s3 + "</li>" + "<li>" +_s4 + "</li>" + "</ul>";
+  document.getElementById("bio").innerHTML = "<ul style='padding-left:10px'>"  + "<li>" + _s1 + "</li>" + "<li>" +_s2 + "</li>" + "<li>" +_s3 + "</li>" + "<li>" +_s4 + "</li>" + "</ul>";
 
 }
 
@@ -308,7 +308,7 @@ function check_layers_loaded(){
 
   if (counter == tot){
     nbr_lyrs.forEach(function(l){ group.addLayer(l)})
-    map.fitBounds(group.getBounds().pad(0))
+    map.fitBounds(group.getBounds())
   }
   else{
     setTimeout(check_layers_loaded,100)
@@ -320,7 +320,7 @@ function check_layers_loaded(){
 function check_layers_unloaded(){
 
   if (counter == tot){
-    map.fitBounds(group.getBounds().pad(0))
+    map.fitBounds(group.getBounds())
   }  else{
     setTimeout(check_layers_loaded,100)
   }
