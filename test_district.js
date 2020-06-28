@@ -148,7 +148,7 @@ document.getElementById("nbr_btn").style.background = "#ffffff"
   }
 
   curfile = filenames[~~(filenames.diff(seen).length * Math.random())];
-
+  if (seen.length == filenames.length){seen = [];}
   while (seen.includes(curfile)){
     curfile = filenames[~~(filenames.diff(seen).length * Math.random())];
   }
