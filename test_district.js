@@ -474,7 +474,7 @@ function apply_party_colors(){
 
 function hot(){
 
-  commit_queue.push(btoa(curfile + ", 'not'\n"))
+  commit_queue.push(btoa(curfile + ", 'hot'\n"))
   randomdistrict()
 
 }
