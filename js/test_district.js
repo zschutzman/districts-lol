@@ -477,13 +477,13 @@ function apply_party_colors(){
 
 function hot(){
 
-  commit_queue.push(btoa(curfile + ", 'hot'\n"))
+  commit_queue.push((curfile + ", 'hot'\n"))
   randomdistrict()
 
 }
 
 function not(){
-  commit_queue.push(btoa(curfile + ", 'not'\n"))
+  commit_queue.push((curfile + ", 'not'\n"))
   randomdistrict()
 }
 
@@ -492,25 +492,26 @@ function not(){
 
 function make_commits()
     {
-        if (commit_queue.length > 0)
+        if (commit_queue.length >=5)
         {
             //get the next message on the queue
-            var msg = commit_queue.shift();
+            var msg = "";
+            for (var i=0;i<5;i++){
+             msg += commit_queue.shift();
+
+           }
 
             hsh = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
             var commit_info = {
-              message: "vote " + curfile + " " + hsh,
-              content: msg
+              message: "vote "  + hsh,
+              content: btoa(msg)
             }
             repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then().catch(function(e) {  commit_queue.push(msg)    })
         }
-       setTimeout(make_commits);
+       setTimeout(make_commits,100);
 
     }
-make_commits()
 
-//
-// function check_work(){
-//   randomdistrict()
-//   setTimeout(function(){check_work();}, 100)
-// }
+
+
+make_commits()
