@@ -147,11 +147,10 @@ document.getElementById("nbr_btn").style.background = "#ffffff"
     group.removeLayer(layer)
   }
 
-  curfile = filenames[~~(filenames.diff(seen).length * Math.random())];
-  if (seen.length == filenames.length){seen = [];}
-  while (seen.includes(curfile)){
-    curfile = filenames[~~(filenames.diff(seen).length * Math.random())];
-  }
+  if (seen.length == filenames.length){console.log("done em all") ; seen = [];}
+  curfile = filenames.diff(seen)[~~(filenames.diff(seen).length * Math.random())];
+
+
   seen.push(curfile);
 
   layer = new L.GeoJSON.AJAX("geojsons/" + curfile + ".geojson");
@@ -223,6 +222,9 @@ document.getElementById("nbr_btn").style.background = "#ffffff"
 
   _s0 = "This district is " +   (dn == 0 ? sn + " At-Large" : "the "+ sn + " " + ordinal_suffix_of(dn))      +        ", represented by " +  maxname +  ", a " + maxparty.charAt(0).toUpperCase() + maxparty.slice(1) + "," + vstr
 
+  if (maxprop < .45){
+    console.log(curfile)
+  }
 
 
   var ind1 = ~~(demo_field_list.length * Math.random())
@@ -296,6 +298,7 @@ document.getElementById("nbr_btn").style.background = "#ffffff"
   document.getElementById("bio").innerHTML = "<ul style='padding-left:10px'>"  + "<li>" + _s1 + "</li>" + "<li>" +_s2 + "</li>" + "<li>" +_s3 + "</li>"  + "</ul>";
 
   document.getElementById("pop_text").innerHTML = _s4
+
 
 }
 
@@ -505,3 +508,9 @@ function make_commits()
 
     }
 make_commits()
+
+// 
+// function check_work(){
+//   randomdistrict()
+//   setTimeout(function(){check_work();}, 100)
+// }
