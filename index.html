@@ -1,12 +1,14 @@
 <!DOCTYPE html>
+<html lang="en">
 <head>
-	<html lang="en">
+
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
-
+	<link rel="icon" type="image/ico" href="/favicon.ico"/>
+	<link rel="icon" type="image/ico" href="https://districts.lol/favicon.ico"/>
 	<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
 	integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
@@ -33,7 +35,7 @@
 		<h2 style="text-align:center; ">Is this district HOT or NOT?</h2>
 
 		<div style="width:100vw;max-width:400px;">
-			<div id="district" class="figure", style="width:100%;padding-top:100%; border-radius:15%; margin:0 auto"></div>
+			<div id="district" class="figure" style="width:100%;padding-top:100%; border-radius:15%; margin:0 auto"></div>
 			<br />
 			<p class="figure" id="district_name"></p>
 			<p style="margin:0 auto;margin-bottom:5px; text-align:center">
@@ -57,13 +59,13 @@
 
 					<defs>
 						<linearGradient id="hot-or-not-gradient">
-							<stop offset="0%" stop-color="#cc00cc"/>
-							<stop offset="50%" stop-color="#cc00cc" id="hot_bar"/>
-							<stop offset="50%" stop-color="#f6b93b" id="not_bar"/>
-							<stop offset="100%" stop-color="#f6b93b"/>
+							<stop offset="0%" stop-color="#cc00cc"></stop>
+							<stop offset="50%" stop-color="#cc00cc" id="hot_bar"></stop>
+							<stop offset="50%" stop-color="#f6b93b" id="not_bar"></stop>
+							<stop offset="100%" stop-color="#f6b93b"></stop>
 						</linearGradient>
 					</defs>
-					<rect  rx="25px", width="100%"  id="hotnot_bar" fill="url(#hot-or-not-gradient)" opacity="0%" />
+					<rect  rx="25px" width="100%"  id="hotnot_bar" fill="url(#hot-or-not-gradient)" opacity="0%" ></rect>
 				</svg>
 			</div>
 
