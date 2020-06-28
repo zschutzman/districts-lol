@@ -477,81 +477,37 @@ function apply_party_colors(){
 
 function hot(){
 
-  commit_queue.push(curfile + ", 'hot'\n")
+  commit_queue.push(btoa(curfile + ", 'hot'\n"))
   randomdistrict()
 
 }
 
 function not(){
-  commit_queue.push(curfile + ", 'not'\n")
+  commit_queue.push(btoa(curfile + ", 'not'\n"))
   randomdistrict()
 }
 
 
 
 
-// function make_commits()
-//     {
-//         if (commit_queue.length > 0)
-//         {
-//             //get the next message on the queue
-//             var msg = commit_queue.shift();
-//
-//             hsh = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-//             var commit_info = {
-//               message: "vote_"  + hsh,
-//               content: msg
-//             }
-//             repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then().catch(function(e) {  commit_queue.push(msg)    })
-//         }
-//        setTimeout(make_commits);
-//
-//     }
-//make_commits()
+function make_commits()
+    {
+        if (commit_queue.length > 0)
+        {
+            //get the next message on the queue
+            var msg = commit_queue.shift();
 
+            hsh = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+            var commit_info = {
+              message: "vote " + curfile + " " + hsh,
+              content: msg
+            }
+            repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then().catch(function(e) {  commit_queue.push(msg)    })
+        }
+       setTimeout(make_commits);
 
-var clear = false;
-
-function push_data(){
-  if (commit_queue.length == 0){clear=true; return}
-  else {
-      //get the next message on the queue
-      var msg = commit_queue.join();
-      console.log(msg)
-      hsh = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
-      var commit_info = {
-        message: "vote_"  + hsh,
-        content: btoa(msg)
-      }
-
-      return repo.contents("_data/hot-or-not/raw/testdat_" + hsh + ".txt").add(commit_info)
-  }
-
-
-
-
-
-}
-
-window.addEventListener('beforeunload', function (e) {
-  p = push_data()
-  console.log(p)
-  console.log(p.resolve())
-  p.then(function(e){clear=true}).catch(function(e) {console.log("fail")})
-  while (!clear){
-    console.log("waitng")
-  }
-});
-
-
-
-
-
-
-
-
-
-
+    }
+make_commits()
 
 //
 // function check_work(){
