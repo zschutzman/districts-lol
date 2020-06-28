@@ -8,112 +8,79 @@
 	<meta name="mobile-web-app-capable" content="yes">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 
+		<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+	integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+	crossorigin=""/>
+
+	<link rel="stylesheet" href="css/style-mg.css" />
 
 
-<link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Open+Sans" />
+	<!-- Make sure you put this AFTER Leaflet's CSS -->
+	<script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+	integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+	crossorigin=""></script>
+	<script src="js/leaflet.ajax.min.js"></script>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="js/octokat.js"></script>
 
 
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
-    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
-    crossorigin=""/>
-
-
-<link rel="stylesheet" href="css/style-mg.css" />
-
-		<!-- Make sure you put this AFTER Leaflet's CSS -->
-	  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
-	    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
-	    crossorigin=""></script>
-<script src="js/leaflet.ajax.min.js"></script>
-<script src="https://d3js.org/d3.v5.min.js"></script>
-<script src="js/octokat.js"></script>
-
-	<title>Hot or Not</title>
+<title>Hot or Not</title>
 </head>
 
 <body>
+	<main>
 
+		<h2 style="text-align:center; ">Is this district HOT or NOT?</h2>
 
-<main>
-<h2 style="text-align:center; ">Is this district HOT or NOT?</h2>
+		<div style="width:100vw;max-width:400px;">
+			<div id="district" class="figure", style="width:100%;padding-top:100%; border-radius:15%; margin:0 auto"></div>
+			<br />
+			<p class="figure" id="district_name"></p>
+			<p style="margin:0 auto;margin-bottom:5px; text-align:center">
+				<button class="hot_button noselect" onclick="hot()" style="display: inline-block; width:47%" >hot</button>
+				<button class="not_button noselect" onclick="not()" style="display:inline-block; width:47%" >not</button>
+			</p>
 
+			<span class="figure" id="bio" style="margin:0 auto"></span>
 
-	<div style="width:100vw;max-width:400px;">
-<div id="district" class="figure", style="width:100%;padding-top:100%; border-radius:15%; margin:0 auto"></div>
+			<p style="margin:0 auto; text-align:center; ;margin-bottom:5px;">
+				<button class="nbr_button noselect" onclick="toggle_adj()" style="display: inline-block; width:47%" id="nbr_btn" >nearby districts</button>
+				<button class="partisan_button noselect" onclick="toggle_party_colors()" style="display:inline-block; width:47%" id="color_btn">partisan colors</button>
+			</p>
+			<br />
 
-<br />
+			<p class="figure" id="pop_text" style="margin:0 auto"></p>
+			<br />
+			<div class="figure"  style="text-align:center;margin:0 auto">
 
-<p class="figure" id="district_name"></p>
+				<svg width="100%" height="75" id="popularity_bar">
 
+					<defs>
+						<linearGradient id="hot-or-not-gradient">
+							<stop offset="0%" stop-color="#cc00cc"/>
+							<stop offset="50%" stop-color="#cc00cc" id="hot_bar"/>
+							<stop offset="50%" stop-color="#f6b93b" id="not_bar"/>
+							<stop offset="100%" stop-color="#f6b93b"/>
+						</linearGradient>
+					</defs>
+					<rect  rx="25px", width="100%"  id="hotnot_bar" fill="url(#hot-or-not-gradient)" opacity="0%" />
+				</svg>
+			</div>
 
+			<div style="float:right"><a href="/about.html">about</a></div>
+			<div style="float:right">this project is in-progress.</div>
 
-<p style="margin:0 auto;margin-bottom:5px; text-align:center">
-<button class="hot_button noselect" onclick="hot()" style="display: inline-block; width:47%" >hot</button>
-<button class="not_button noselect" onclick="not()" style="display:inline-block; width:47%" >not</button>
-</p>
+		</div>
 
-<!-- <button onclick="randomdistrict()">New Random District</button> -->
+		<script src="filenames.js"></script>
+		<script src="adjacencies.js"></script>
+		<script src="elections.js"></script>
+		<script src="demographics.js"></script>
+		<script src="data/vote-data.js"></script>
+		<script src="test_district.js"></script>
 
-
-
-
-
-
-<span class="figure" id="bio" style="margin:0 auto"></span>
-
-<p style="margin:0 auto; text-align:center; ;margin-bottom:5px;">
-<button class="nbr_button noselect" onclick="toggle_adj()" style="display: inline-block; width:47%" id="nbr_btn" >nearby districts</button>
-<button class="partisan_button noselect" onclick="toggle_party_colors()" style="display:inline-block; width:47%" id="color_btn">partisan colors</button>
-</p>
-<br />
-
-<p class="figure" id="pop_text" style="margin:0 auto"></p>
-<br />
-<div class="figure"  style="text-align:center;margin:0 auto">
-
-	<svg width="100%" height="75" id="popularity_bar">
-
-		<defs>
-
-	      <linearGradient id="Gradient2">
-	        <stop offset="0%" stop-color="#cc00cc"/>
-	        <stop offset="50%" stop-color="#cc00cc" id="hot_bar"/>
-					<stop offset="50%" stop-color="#f6b93b" id="not_bar"/>
-	        <stop offset="100%" stop-color="#f6b93b"/>
-	      </linearGradient>
-	  </defs>
-
-
-
-	   <rect  rx="25px", width="100%"  id="hotnot_bar" fill="url(#Gradient2)" opacity="0%" />
-
- 	 </svg>
-
-</div>
-
-
-<div style="float:right"><a href="/about.html">about</a></div>
-<div style="float:right">this project is in-progress.</div>
-
-
-</div>
-
-<script src="filenames.js"></script>
-<script src="adjacencies.js"></script>
-<script src="elections.js"></script>
-<script src="demographics.js"></script>
-<script src="data/vote-data.js"></script>
-<script src="test_district.js"></script>
-
-
-<script>
-
-randomdistrict();
-
-
-</script>
-
-
+		<script>randomdistrict();</script>
 
 </main>
 </body>
