@@ -256,22 +256,23 @@ document.getElementById("nbr_btn").style.background = "#ffffff"
     _s1 = "The median income in the district is $" + f1 + "."
   }
   else{
-    _s1 = ~~((100 * parseFloat(f1) / parseFloat(d1))) + " percent of the district " + demo_string_lookup[demo_field_list[ind1]] + "."
+    _s1 = (~~((100 * parseFloat(f1) / parseFloat(d1)))==0 ? "less than 1" : ~~((100 * parseFloat(f1) / parseFloat(d1))))  + " percent of the district " + demo_string_lookup[demo_field_list[ind1]] + "."
   }
 
   if ([demo_field_list[ind2]] == "medianinc"){
     _s2 = "The median income in the district is $" + f2 + "."
   }
   else{
-    _s2 = ~~((100 * parseFloat(f2) / parseFloat(d1))) + " percent of the district " + demo_string_lookup[demo_field_list[ind2]] + "."
+    _s2 = (~~((100 * parseFloat(f2) / parseFloat(d1)))==0 ? "less than 1" : ~~((100 * parseFloat(f2) / parseFloat(d1)))) + " percent of the district " + demo_string_lookup[demo_field_list[ind2]] + "."
   }
 
   if ([demo_field_list[ind3]] == "medianinc"){
     _s3 = "The median income in the district is $" + f3 + "."
   }
   else{
-    _s3 = ~~((100 * parseFloat(f3) / parseFloat(d1))) + " percent of the district " + demo_string_lookup[demo_field_list[ind3]] + "."
+    _s3 = (~~((100 * parseFloat(f3) / parseFloat(d1)))==0 ? "less than 1" : ~~((100 * parseFloat(f3) / parseFloat(d1)))) + " percent of the district " + demo_string_lookup[demo_field_list[ind3]] + "."
   }
+
 
 
   if (vote_data[curfile] == undefined){

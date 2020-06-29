@@ -11889,7 +11889,7 @@ var demo_string_lookup = {
   "asian" : "identified as Asian",
   "nhpi" : "identified as Native Hawaiian or Pacific Islander",
   "other" : "identified their race as 'other'",
-  "tworaces" : "identified as two or more races",
+  "tworace" : "identified as two or more races",
   "nohisp" : "identified as non-Hispanic",
   "hisp" : "identified as Hispanic",
   "over25" : "are over the age of 25",
