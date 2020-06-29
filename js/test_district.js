@@ -494,22 +494,27 @@ function not(){
 function make_commits()
     {
         if (commit_queue.length >=5)
+        var l = commit_queue.length
         {
+          var msg_arr = [];
             //get the next message on the queue
-            var msg = "";
-            for (var i=0;i<5;i++){
-             msg += commit_queue.shift();
 
+            for (var i=0;i<l;i++){
+             msg_arr.push(commit_queue.shift());
            }
+
+
+           var msg = msg_arr.join("")
+
 
             hsh = Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
             var commit_info = {
               message: "vote "  + hsh,
               content: btoa(msg)
             }
-            repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then().catch(function(e) {  commit_queue.push(msg)    })
+            repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then().catch(function(e) {  commit_queue.concat(msg_arr)   })
         }
-       setTimeout(make_commits,100);
+       setTimeout(make_commits,200);
 
     }
 
