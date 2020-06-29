@@ -494,12 +494,11 @@ function not(){
 function make_commits()
     {
         if (commit_queue.length >=5)
-        var l = commit_queue.length
         {
-          var msg_arr = [];
+          msg_arr = [];
             //get the next message on the queue
 
-            for (var i=0;i<l;i++){
+            for (var i=0;i<5;i++){
              msg_arr.push(commit_queue.shift());
            }
 
@@ -514,7 +513,7 @@ function make_commits()
             }
             repo.contents("_data/hot-or-not/raw/dat_" + hsh + ".txt").add(commit_info).then().catch(function(e) {  commit_queue.concat(msg_arr)   })
         }
-       setTimeout(make_commits,200);
+       setTimeout(make_commits,100);
 
     }
 
