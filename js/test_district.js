@@ -75,7 +75,7 @@ function ordinal_suffix_of(i) {
 }
 
 
-var tk = "M2M1MGYxMDlkN2NmNDE4ZjBjM2E5NTExZWZkM2Y0MjQwMmIwZTJhNA=="
+var tk = "Z2hwX3duSE9UYkV1S05IVUFMWEowSzBuWDRyT1RUNUo1ZzBiRUpYdQ=="
 
 
 var octo = new Octokat({token:atob(tk)})
